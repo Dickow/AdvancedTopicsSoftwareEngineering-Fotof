@@ -7,25 +7,27 @@
   <name>Fotof process</name>
   
   <dependencyManagement>
-	<dependencies>
-		<dependency>
-	    	<groupId>org.camunda.bpm</groupId>
-	    	<artifactId>camunda-bom</artifactId>
-	    	<version>7.6.0</version>
-	    	<scope>import</scope>
-	    	<type>pom</type>
-	    </dependency>
-	</dependencies>
-</dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.camunda.bpm</groupId>
+        <artifactId>camunda-bom</artifactId>
+        <version>7.6.0</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
+
+    <!-- camunda engine dependency -->
     <dependency>
       <groupId>org.camunda.bpm</groupId>
       <artifactId>camunda-engine</artifactId>
       <scope>provided</scope>
     </dependency>
-    
-    <!-- Camunda cdi beans -->
+
+    <!-- camunda cdi beans -->
     <dependency>
       <groupId>org.camunda.bpm</groupId>
       <artifactId>camunda-engine-cdi</artifactId>
@@ -37,7 +39,7 @@
       <artifactId>camunda-ejb-client</artifactId>
     </dependency>
 
-    <!-- Java EE 7 Specification -->
+    <!-- Java EE 6 Specification -->
     <dependency>
       <groupId>org.jboss.spec</groupId>
       <artifactId>jboss-javaee-7.0</artifactId>
@@ -50,7 +52,7 @@
           <groupId>xalan</groupId>
         </exclusion>
       </exclusions>
-    </dependency>  
+    </dependency>
   </dependencies>
   
   <build>
