@@ -28,22 +28,22 @@
     <bpmn:sequenceFlow id="SequenceFlow_1o4sq6c" sourceRef="Task_1f4bk6m" targetRef="Task_06b1raz" />
     <bpmn:sequenceFlow id="SequenceFlow_1i3ec4i" sourceRef="Task_03wibiu" targetRef="Task_1f4bk6m" />
     <bpmn:sequenceFlow id="SequenceFlow_177yp11" sourceRef="Task_11mlahj" targetRef="Task_03wibiu" />
-    <bpmn:startEvent id="Booking_received" name="Booking Received" camunda:formKey="app:placeBooking.jsf">
+    <bpmn:startEvent id="Booking_received" name="Booking Received" camunda:formKey="app:placebooking.jsf">
       <bpmn:outgoing>SequenceFlow_0dsgvxp</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:serviceTask id="Task_0qim4r8" name="Handle Booking" camunda:expression="${true}">
+    <bpmn:serviceTask id="Task_0qim4r8" name="Handle Booking" camunda:expression="${bookingBusinessLogic.persistBooking(execution)}">
       <bpmn:incoming>SequenceFlow_0dsgvxp</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_031gt80</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:userTask id="Task_11mlahj" name="Perform Photoshoot Session">
+    <bpmn:userTask id="Task_11mlahj" name="Perform Photoshoot Session" camunda:formKey="app:performphotoshoot.jsf">
       <bpmn:incoming>SequenceFlow_031gt80</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_177yp11</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Task_03wibiu" name="Process and organize pictures">
+    <bpmn:userTask id="Task_03wibiu" name="Process and organize pictures" camunda:formKey="app:photoprocessing.jsf">
       <bpmn:incoming>SequenceFlow_177yp11</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1i3ec4i</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:serviceTask id="Task_1f4bk6m" name="Notify Customer" camunda:expression="${true}">
+    <bpmn:serviceTask id="Task_1f4bk6m" name="Notify Customer" camunda:expression="${bookingBusinessLogic.sendNotification(execution)}">
       <bpmn:incoming>SequenceFlow_1i3ec4i</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1o4sq6c</bpmn:outgoing>
     </bpmn:serviceTask>

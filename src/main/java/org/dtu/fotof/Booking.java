@@ -30,6 +30,8 @@ public class Booking implements Serializable {
 	protected String firstname;
 	protected String lastname;
 	protected String mail;
+	protected String photographer;
+	protected Double price;
 
 	public Long getId() {
 		return id;
@@ -82,6 +84,32 @@ public class Booking implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+	public String getPhotographer() {
+		return photographer;
+	}
+	public void setPhotographer(String photographer) {
+		this.photographer = photographer;
+	}
+	public Double getPrice(){
+		Double price = 0.0;
+		String value = this.getPhotographer().toLowerCase();
+		if(value.equals("michael")){
+			price = 2319.95;
+		}
+		else if(value.equals("daniel")){
+			price = 1319.95;
+		}
+		else if(value.equals("lars")){
+			price = 3319.95;
+		}
+		else if(value.equals("morten")){
+			price = 1964.95;
+		}
+		else {
+			price = 10000000.0;
+		}
+				
+		return price;
+	}
 	
 }

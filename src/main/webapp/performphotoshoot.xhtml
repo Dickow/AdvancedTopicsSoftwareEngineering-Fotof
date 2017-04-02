@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view>
+  <f:metadata>
+    <!-- Start a new process instance. The Process Definition Key is read internally from
+         request parameters and cached in the CDI conversation scope.
+    -->
+    <f:event type="preRenderView" listener="#{camundaTaskForm.startTaskForm()}" />
+  </f:metadata>
+  <h:head>
+    <title>Photo Shoot Sessions</title>
+  </h:head>
+  <h:body>
+    <h1>Photoshoot session</h1>
+    <h2>Photographer: #{photoShootSessionHandler.booking.photographer}</h2>
+    <h2>Customer: #{photoShootSessionHandler.booking.firstname} #{photoShootSessionHandler.booking.lastname}</h2>
+    <h2>Date: #{photoShootSessionHandler.date}</h2>
+    <h:form id="submitForm">
+    <h:outputLabel>Customer present?</h:outputLabel>
+	    <h:selectBooleanCheckbox value="#{photoShootSessionHandler.customerPresent}"></h:selectBooleanCheckbox> <br/>
+	      <h:commandButton id="submit_button" value="Complete Session" action="#{photoShootSessionHandler.photoshootCompleted()}" />
+    </h:form>
+  </h:body>
+</f:view>
+</html>

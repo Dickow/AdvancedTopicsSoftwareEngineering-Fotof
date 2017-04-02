@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view>
+  <f:metadata>
+    <!-- Start a new process instance. The Process Definition Key is read internally from
+         request parameters and cached in the CDI conversation scope.
+    -->
+    <f:event type="preRenderView" listener="#{camundaTaskForm.startTaskForm()}" />
+  </f:metadata>
+  <h:head>
+    <title>Photo editing and organization</title>
+  </h:head>
+  <h:body>
+    <h2>Customer: #{photoProcessHandler.booking.firstname} #{photoProcessHandler.booking.lastname}</h2>
+    <h2>Email: #{photoProcessHandler.booking.mail}</h2>
+    <h:form id="submitForm">
+    	<h:outputLabel>Editing Completed?</h:outputLabel>
+	    <h:selectBooleanCheckbox value="#{photoProcessHandler.editingCompleted}"></h:selectBooleanCheckbox> <br/>
+	    
+	    <h:outputLabel>Photos Organized?</h:outputLabel>
+	    <h:selectBooleanCheckbox value="#{photoProcessHandler.photosOrganized}"></h:selectBooleanCheckbox> <br/>
+	    
+	    <h:outputLabel>Photos Uploaded?</h:outputLabel>
+	    <h:selectBooleanCheckbox value="#{photoProcessHandler.photosUploaded}"></h:selectBooleanCheckbox> <br/>
+	    
+	    <h:commandButton id="submit_button" value="Photo Editing Completed" action="#{photoProcessHandler.processingCompleted()}" />
+    </h:form>
+  </h:body>
+</f:view>
+</html>
