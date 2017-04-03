@@ -58,11 +58,11 @@
       <bpmn:incoming>SequenceFlow_1wrt2he</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1jzqq65</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:userTask id="Task_0yngbro" name="Perform editing">
+    <bpmn:userTask id="Task_0yngbro" name="Perform editing" camunda:formKey="app:performediting.jsf">
       <bpmn:incoming>SequenceFlow_10engbx</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1k0nirl</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Task_0qvl97j" name="Handle photo handoff">
+    <bpmn:userTask id="Task_0qvl97j" name="Handle photo handoff" camunda:formKey="app:photohandoff.jsf">
       <bpmn:incoming>SequenceFlow_18hpl3p</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_084u10q</bpmn:outgoing>
     </bpmn:userTask>

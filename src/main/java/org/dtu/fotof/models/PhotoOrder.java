@@ -2,32 +2,31 @@ package org.dtu.fotof.models;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Version;
 
-public class Order implements Serializable{
+@Entity
+public class PhotoOrder implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public Order(){
+	public PhotoOrder(){
 		super();
-	}
-	
-	public Order(Request[] requests){
-		for (Request request : requests) {
-			price += request.getPrice();
-		}
 	}
 	
 	@Id
 	@GeneratedValue
 	protected Long id;
 	
-	protected Booking booking;
+	@Version
+	protected Long version;
 	
+	protected Long booking;
 	protected Double price;
 
 	/**
@@ -35,7 +34,7 @@ public class Order implements Serializable{
 	 * @return
 	 */
 	public Double getPrice() {
-		return price + booking.getPrice();
+		return price;
 	}
 
 	public void setPrice(Double price) {
@@ -50,14 +49,22 @@ public class Order implements Serializable{
 		this.id = id;
 	}
 
-	public Booking getBooking() {
+	public Long getBooking() {
 		return booking;
 	}
 
-	public void setBooking(Booking booking) {
+	public void setBooking(Long booking) {
 		this.booking = booking;
 	}
-	
-	
-	
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 }

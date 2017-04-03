@@ -15,13 +15,19 @@
     <title>Place Order</title>
   </h:head>
   <h:body>
-    <h:form id="submitForm" style="'height':'100%'">
-    	<h1><h:outputText value="Choose the special requests"/></h1>
-	          <h:selectManyMenu id="requests" value="#{inputOrderProcessHandler.selectedRequests}">
-	              <f:selectItems value="#{inputOrderProcessHandler.availableRequests}" itemValue="#{orderRequest.requestName}" itemLabel="#{orderRequest.requestName}"/>
-	          </h:selectManyMenu>
-	      <h:commandButton id="submit_button" value="Place Order" action="#{inputOrderProcessHandler.sendOrder()}" />
-    </h:form>
+    <h:panelGrid columns="2">
+	    <h:form>	
+	    	<h1><h:outputText value="Choose the special requests"/></h1>
+		          <h:selectManyMenu value="#{inputOrderProcessHandler.selectedRequests}">
+		              <f:selectItems value="#{inputOrderProcessHandler.availableRequests}" 
+						             var="orderRequest" 
+						             itemValue="#{orderRequest.requestName}" 
+						             itemLabel="#{orderRequest.requestName}"
+						             />
+		          </h:selectManyMenu>
+		      <h:commandButton id="submit_button" value="Place Order" action="#{inputOrderProcessHandler.sendOrder()}" />
+	    </h:form>
+    </h:panelGrid>
   </h:body>
 </f:view>
 </html>
