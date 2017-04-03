@@ -1,4 +1,4 @@
-package org.dtu.fotof;
+package org.dtu.fotof.models;
 
 import java.io.Serializable;
 import javax.persistence.*;

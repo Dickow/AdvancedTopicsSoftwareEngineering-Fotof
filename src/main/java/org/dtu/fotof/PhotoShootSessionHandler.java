@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.camunda.bpm.engine.cdi.BusinessProcess;
+import org.dtu.fotof.models.Booking;
 
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;

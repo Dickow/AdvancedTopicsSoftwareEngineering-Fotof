@@ -13,6 +13,7 @@ import javax.persistence.PersistenceContext;
 
 import org.camunda.bpm.engine.cdi.jsf.TaskForm;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
+import org.dtu.fotof.models.Booking;
 
 @Stateless
 @Named

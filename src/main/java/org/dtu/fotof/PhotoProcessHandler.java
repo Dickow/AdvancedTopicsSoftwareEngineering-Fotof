@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.camunda.bpm.engine.cdi.BusinessProcess;
+import org.dtu.fotof.models.Booking;
 
 @Named
 @ConversationScoped
