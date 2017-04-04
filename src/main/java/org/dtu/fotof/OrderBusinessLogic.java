@@ -33,17 +33,15 @@ public class OrderBusinessLogic {
 		PhotoOrder order = new PhotoOrder();
 		Booking booking = entityManager.find(Booking.class, (Long)delegateExecution.getVariable("bookingId"));
 		order.setBooking(booking.getId());
-		// Save the requests chosen in a map
 		try
 		{
 			Double price = (Double)delegateExecution.getVariable("filterPrice");
 			order.setPrice(price + booking.getPrice());
+			LOGGER.log(Level.WARNING, String.format("bookingId: %d%n price: %.2f", booking.getId(), order.getPrice()));
 			
 			entityManager.persist(order);
 			entityManager.flush();
 			
-			delegateExecution.removeVariables();
-			delegateExecution.setVariable("bookingId", booking.getId());
 			delegateExecution.setVariable("orderId", order.getId());
 		}
 		catch(Exception e){
@@ -53,6 +51,7 @@ public class OrderBusinessLogic {
 	
 	public void orderInput(){
 		try{
+			
 			LOGGER.log(Level.INFO, "Finishing the input order form");
 			taskForm.completeTask();
 		}
@@ -66,12 +65,25 @@ public class OrderBusinessLogic {
 		PhotoOrder order = entityManager.find(PhotoOrder.class, (Long)delegateExecution.getVariable("orderId"));
 		Booking booking = entityManager.find(Booking.class, order.getBooking());
 		String message = String.format(
-				"Charging the amount: %.2f \n Customer: %s %s \n Mail: %s", 
+				"Charging the amount: %.2f %n Customer: %s %s %n Mail: %s", 
 				order.getPrice(), 
 				booking.getFirstname(), 
 				booking.getLastname(), 
 				booking.getMail());
 		LOGGER.log(Level.INFO, message);
+	}
+	
+	public void sendInvoice(DelegateExecution delegateExecution){
+		PhotoOrder order = entityManager.find(PhotoOrder.class, (Long)delegateExecution.getVariable("orderId"));
+		Booking booking = entityManager.find(Booking.class, order.getBooking());
+		String message = String.format(
+				"Sending the invoice for the amount: %.2f %n Customer: %s %s %n Mail: %s", 
+				order.getPrice(), 
+				booking.getFirstname(), 
+				booking.getLastname(), 
+				booking.getMail());
+		LOGGER.log(Level.INFO, message);
+		LOGGER.log(Level.INFO, "Invoice accepted");
 	}
 	
 	public void performEditingCompleted(){
@@ -88,18 +100,5 @@ public class OrderBusinessLogic {
 		} catch (IOException e) {
 			throw new RuntimeException("Could not complete the photo handoff task form");
 		}
-	}
-	
-	public void sendInvoice(DelegateExecution delegateExecution){
-		PhotoOrder order = entityManager.find(PhotoOrder.class, (Long)delegateExecution.getVariable("orderId"));
-		Booking booking = entityManager.find(Booking.class, order.getBooking());
-		String message = String.format(
-				"Sending the invoice for the amount: %.2f \n Customer: %s %s \n Mail: %s", 
-				order.getPrice(), 
-				booking.getFirstname(), 
-				booking.getLastname(), 
-				booking.getMail());
-		LOGGER.log(Level.INFO, message);
-		LOGGER.log(Level.INFO, "Invoice accepted");
 	}
 }

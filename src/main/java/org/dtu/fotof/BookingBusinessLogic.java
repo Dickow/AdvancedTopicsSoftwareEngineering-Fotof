@@ -75,10 +75,10 @@ public class BookingBusinessLogic {
 	
 	public void sendNotification(DelegateExecution delegateExecution){
 		Booking booking = entityManager.find(Booking.class, (Long)delegateExecution.getVariable("bookingId"));
-		LOGGER.log(Level.INFO, String.format("Sending notification to the customer: %s %s \n Email: %s", booking.getFirstname(), booking.getLastname(), booking.getMail()));
+		LOGGER.log(Level.INFO, String.format("Sending notification to the customer: %s %s %n Email: %s", booking.getFirstname(), booking.getLastname(), booking.getMail()));
 	}
 	
 	public void sendInvoice(Booking booking){
-		LOGGER.log(Level.INFO, String.format("Sending invoice to: %s %s. \n Price: %d", booking.getFirstname(), booking.getLastname(), booking.getPrice()));
+		LOGGER.log(Level.INFO, String.format("Sending invoice to: %s %s. %n Price: %d", booking.getFirstname(), booking.getLastname(), booking.getPrice()));
 	}
 }

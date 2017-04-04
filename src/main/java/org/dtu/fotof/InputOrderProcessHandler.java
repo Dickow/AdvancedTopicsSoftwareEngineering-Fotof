@@ -48,24 +48,20 @@ public class InputOrderProcessHandler implements Serializable{
 	public void sendOrder(){
 		try
 		{
-			// Save the chosen filters
-			ArrayList<String> filters = new ArrayList<String>();
 			Double price = 0.0;
 			for (String req : selectedRequests) {
 				// get the actual request
 				Request request = this.findRequest(req);
 				price += request.getPrice();
-				filters.add(request.getRequestName());
 			}
 			
-			businessProcess.setVariable("filters", filters);
+			businessProcess.setVariable("filters", selectedRequests);
 			businessProcess.setVariable("filterPrice", price);
+			orderBusinessLogic.orderInput();
 		}
 		catch(Exception e){
 			throw new RuntimeException("Could not save the chosen requests in the process context");
 		}
-		
-		orderBusinessLogic.orderInput();
 	}
 
 	public List<Request> getAvailableRequests() {

@@ -15,8 +15,16 @@
     <title>Perform editing</title>
   </h:head>
   <h:body>
+  <h1>Perform editing</h1>
+  <h3>Chosen filters</h3>
+ 	<ul>
+		<ui:repeat var="req" value="#{performEditingHandler.requests}">
+	    	<li>#{req}</li>
+    	</ui:repeat>
+  </ul>
     <h:form id="submitForm">
-	      <h:commandButton id="submit_button" value="Complete Session" action="#{performEditingHandler.editingPerformed()}" />
+    	
+	      <h:commandButton id="submit_button" value="Editing Finished" action="#{performEditingHandler.editingPerformed()}" />
     </h:form>
   </h:body>
 </f:view>
