@@ -40,13 +40,14 @@ public class PhotoShootSessionHandler implements Serializable{
 		return booking;
 	}
 	
-	public void photoshootCompleted() throws IOException, CustomerNotPresentException
+	public void photoshootCompleted() throws IOException
 	{
 		if(getCustomerPresent() == true){
 			bookingLogic.photoShootPerformed(booking);
 		}
 		else{
-			throw new CustomerNotPresentException("Customer was not present");
+			businessProcess.setVariable("customerPresent", false);
+			bookingLogic.photoShootPerformed(booking);
 		}
 	}
 	
