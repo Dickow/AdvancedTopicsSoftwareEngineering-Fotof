@@ -42,6 +42,8 @@ public class PhotoShootSessionHandler implements Serializable{
 	
 	public void photoshootCompleted() throws IOException
 	{
+		
+		businessProcess.setVariable("customerPresent", getCustomerPresent());
 		if(getCustomerPresent() == true){
 			bookingLogic.photoShootPerformed(booking);
 		}
