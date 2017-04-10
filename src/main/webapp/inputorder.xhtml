@@ -16,16 +16,16 @@
   </h:head>
   <h:body>
     <h:panelGrid columns="2">
+    <h1>Choose the special requests"</h1>
 	    <h:form>	
-	    	<h1><h:outputText value="Choose the special requests"/></h1>
-		          <h:selectManyMenu value="#{inputOrderProcessHandler.selectedRequests}">
-		              <f:selectItems value="#{inputOrderProcessHandler.availableRequests}" 
-						             var="orderRequest" 
-						             itemValue="#{orderRequest.requestName}" 
-						             itemLabel="#{orderRequest.requestName}"
-						             />
-		          </h:selectManyMenu>
-		      <h:commandButton id="submit_button" value="Place Order" action="#{inputOrderProcessHandler.sendOrder()}" />
+		    	<h:selectManyListbox value="#{inputOrderProcessHandler.selectedRequests}">
+		        	<f:selectItems value="#{inputOrderProcessHandler.availableRequests}" 
+						           var="orderRequest" 
+						           itemValue="#{orderRequest.requestName}" 
+						           itemLabel="#{orderRequest.requestName}">
+					</f:selectItems>
+		        </h:selectManyListbox>
+		        <h:commandButton id="submit_button" value="Place Order" action="#{inputOrderProcessHandler.sendOrder()}" />
 	    </h:form>
     </h:panelGrid>
   </h:body>
